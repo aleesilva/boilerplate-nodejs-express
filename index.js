@@ -15,7 +15,6 @@ const server = require('./config/server')
 
 global._base = path.join(__dirname, '/')
 
-
 app.use(timeout.handler({
   timeout: 10000,
   onTimeout: function (_req, res) {
@@ -42,8 +41,8 @@ app.use((_req, res, next) => {
   next()
 })
 
-const routesTodo = require('./modules/todo/' + version + '/routes')
-app.use('/api/' + version + '/todo', routesTodo)
+const todoModule = require('./modules/todo/' + version + '/routes')
+app.use('/api/' + version + '/todo', todoModule)
 
 server.start(app)
 

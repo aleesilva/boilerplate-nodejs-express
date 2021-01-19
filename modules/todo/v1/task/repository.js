@@ -1,7 +1,7 @@
 /**
- * 
- * * the repository file is responsible 
- * for the application's business rules 
+ *
+ * * the repository file is responsible
+ * for the application's business rules
  * and data persistence in its database
  */
 const rfr = require('rfr')

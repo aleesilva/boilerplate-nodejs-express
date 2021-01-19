@@ -1,17 +1,7 @@
 const controller = {
-  create:()=>{
-  },
-  update:()=>{
-
-  },
-  delete:()=>{
-
-  },
-  findById:()=>{
-    
-  }
+  /**
+   * adding controller methods
+   */
 }
 
-
-
-module.exports = controller;
+module.exports = controller
