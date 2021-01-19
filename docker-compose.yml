@@ -1,0 +1,44 @@
+version: '3.3'
+
+networks:
+  api_network:
+    driver: bridge
+
+services:
+  mongo_db:
+    networks:
+      - api_network
+    container_name: mongo_db
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./tmp/db:/data/db
+      - ./tmp/backups:/data/backups
+
+  mongo_data_db:
+    container_name: mongo_data
+    image: tianon/true
+    volumes:
+      - ./tmp/db:/data/db
+      - ./tmp/backups:/data/backups
+
+  api:
+    networks:
+      - api_network
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    image: api
+    container_name: api
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    volumes:
+      - ./:/var/www/app
+    ports:
+      - 3001:3001
+    links:
+      - mongo_db
+    depends_on:
+      - mongo_db
